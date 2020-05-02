@@ -19,6 +19,9 @@ const loopItems = async (page, number, message) => {
 
   message = message.replace("{FIRSTNAME}", number.firstname);
 
+  // if you press enter in the message input field
+  // it submits the message
+  // so use Shift + Enter to enter linebreak the text entry
   sp = message.split("\n");
 
   for (let i = 0; i < sp.length; i++) {
