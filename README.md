@@ -41,7 +41,5 @@ Phone	FirstName	LastName
 Run using npm
 
 ```
-
 npm run start
-
 ```
