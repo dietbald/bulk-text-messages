@@ -3,13 +3,22 @@ const puppeteer = require("puppeteer-core");
 const messageDetails = require("./message");
 
 const { message, numbers } = messageDetails;
-console.log(message);
+
+const addNumbers = async (page, numbers) => {
+  console.log("Adding", numbers);
+  await page.waitForSelector("input.input");
+  await page.type("input.input", numbers.phone + String.fromCharCode(13));
+};
 
 const loopItems = async (page, number, message) => {
   await page.goto("https://messages.google.com/web/conversations/new");
-  await page.waitForSelector("input.input");
-  await page.type("input.input", number + String.fromCharCode(13));
+
+  await addNumbers(page, number);
+
   await page.waitForSelector("textarea.input");
+
+  message = message.replace("{FIRSTNAME}", number.firstname);
+
   sp = message.split("\n");
 
   for (let i = 0; i < sp.length; i++) {
